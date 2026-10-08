@@ -1,0 +1,1019 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  color: #222;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+select,
+textarea {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #777 !important;
+  opacity: 1;
+}
+
+select option {
+  color: #000;
+  background: #fff;
+}
+
+/* =========================================================
+   LOGIN + REGISTER
+========================================================= */
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 30px;
+
+  background: linear-gradient(135deg,
+      #eee7ff 0%,
+      #ddd0ff 50%,
+      #d5c6ff 100%);
+}
+
+/* Floating money emojis */
+
+.money-emoji {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.emoji-1 {
+  top: 15%;
+  left: 10%;
+}
+
+.emoji-2 {
+  top: 18%;
+  left: 52%;
+}
+
+.emoji-3 {
+  top: 45%;
+  left: 8%;
+}
+
+.emoji-4 {
+  top: 22%;
+  right: 12%;
+}
+
+.emoji-5 {
+  top: 50%;
+  right: 8%;
+}
+
+.emoji-6 {
+  bottom: 20%;
+  left: 15%;
+}
+
+.emoji-7 {
+  bottom: 25%;
+  left: 48%;
+}
+
+.emoji-8 {
+  bottom: 12%;
+  right: 15%;
+}
+
+/* Login card */
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+
+  background: #fff;
+
+  border-radius: 22px;
+
+  padding: 32px 34px;
+
+  box-shadow:
+    0 20px 45px rgba(70, 45, 130, 0.18);
+
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+}
+
+.login-icon {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #eee5ff;
+
+  font-size: 30px;
+}
+
+.login-card h1 {
+  margin: 0 0 10px;
+
+  color: #211b35;
+
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.login-subtitle {
+  margin: 0 0 28px;
+
+  color: #777;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.login-card form {
+  text-align: left;
+}
+
+.login-card label {
+  display: block;
+
+  margin: 0 0 7px;
+
+  color: #292333;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-card input {
+  width: 100%;
+  height: 44px;
+
+  border: 1px solid #d8d5df;
+
+  border-radius: 9px;
+
+  padding: 0 13px;
+
+  margin-bottom: 18px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+.login-card input:focus {
+  border-color: #8057cf;
+
+  box-shadow:
+    0 0 0 3px rgba(128, 87, 207, 0.12);
+}
+
+.login-btn {
+  width: 100%;
+  height: 44px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #7d55c7;
+
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #6942b5;
+}
+
+.login-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.register-text {
+  margin: 22px 0 0;
+
+  color: #666;
+
+  font-size: 13px;
+}
+
+.register-link {
+  border: none;
+
+  background: transparent;
+
+  color: #7049bd;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-left: 5px;
+
+  padding: 0;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   PERSONAL FINANCE DASHBOARD
+========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 35px 20px;
+
+  /*
+    Same lavender background as Login/Register
+  */
+
+  background: linear-gradient(135deg,
+      #eee7ff 0%,
+      #ddd0ff 50%,
+      #d5c6ff 100%);
+}
+
+/* Dashboard container */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 560px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   DASHBOARD FLOATING MONEY EMOJIS
+========================================================= */
+
+.dashboard-money-emoji {
+  position: absolute;
+
+  z-index: 1;
+
+  font-size: 30px;
+
+  opacity: 0.75;
+
+  pointer-events: none;
+}
+
+.dashboard-emoji-1 {
+  top: 12%;
+  left: 8%;
+}
+
+.dashboard-emoji-2 {
+  top: 18%;
+  left: 25%;
+}
+
+.dashboard-emoji-3 {
+  top: 42%;
+  left: 7%;
+}
+
+.dashboard-emoji-4 {
+  top: 15%;
+  right: 9%;
+}
+
+.dashboard-emoji-5 {
+  top: 45%;
+  right: 7%;
+}
+
+.dashboard-emoji-6 {
+  bottom: 22%;
+  left: 12%;
+}
+
+.dashboard-emoji-7 {
+  bottom: 15%;
+  left: 28%;
+}
+
+.dashboard-emoji-8 {
+  bottom: 18%;
+  right: 12%;
+}
+
+/* =========================================================
+   DASHBOARD HEADER
+========================================================= */
+
+.dashboard-header {
+  text-align: center;
+
+  color: #7a35d6;
+
+  margin-bottom: 22px;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 4px;
+
+  font-size: 25px;
+
+  font-weight: 700;
+}
+
+.dashboard-header p {
+  margin: 0;
+
+  font-size: 11px;
+
+  color: #705f88;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   FINANCIAL SUMMARY
+========================================================= */
+
+.finance-summary {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.summary-card {
+  min-height: 140px;
+
+  border-radius: 16px;
+
+  padding: 18px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: white;
+
+  box-shadow:
+    0 8px 20px rgba(50, 20, 100, 0.15);
+}
+
+/* Salary */
+
+.salary-card {
+  background: linear-gradient(135deg,
+      #7838f5,
+      #a644f2);
+}
+
+/* Total spent */
+
+.spent-card {
+  background: linear-gradient(135deg,
+      #f11c73,
+      #ee3289);
+}
+
+/* Remaining */
+
+.remaining-card {
+  background: linear-gradient(135deg,
+      #08ae81,
+      #08c993);
+}
+
+.summary-icon {
+  font-size: 22px;
+
+  margin-bottom: 5px;
+}
+
+.summary-card h3 {
+  margin: 0 0 10px;
+
+  font-size: 13px;
+}
+
+.summary-amount {
+  font-size: 21px;
+
+  font-weight: 700;
+}
+
+/* Add amount */
+
+.add-amount-btn {
+  border: none;
+
+  background: white;
+
+  color: #7a35d6;
+
+  padding: 7px 13px;
+
+  border-radius: 20px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.add-amount-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Edit amount */
+
+.small-edit-btn {
+  margin-top: 7px;
+
+  border: none;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  color: white;
+
+  padding: 4px 8px;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions-title {
+  color: #6d35a9;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  margin: 23px 0 10px;
+}
+
+.dashboard-options {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+.dashboard-option {
+  min-height: 94px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(50, 20, 100, 0.12);
+
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.dashboard-option:hover {
+  transform: translateY(-3px);
+
+  background: white;
+}
+
+.dashboard-option-icon {
+  font-size: 22px;
+
+  margin-bottom: 5px;
+}
+
+.dashboard-option-title {
+  color: #6731b4;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.dashboard-option-description {
+  color: #888;
+
+  font-size: 8px;
+
+  margin-top: 4px;
+}
+
+/* =========================================================
+   DASHBOARD INFORMATION BOX
+========================================================= */
+
+.dashboard-info {
+  margin-top: 15px;
+
+  min-height: 65px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 12px 15px;
+
+  color: #6d35a9;
+
+  box-shadow:
+    0 5px 15px rgba(70, 45, 130, 0.08);
+}
+
+.dashboard-info-icon {
+  font-size: 21px;
+
+  margin-right: 12px;
+}
+
+.dashboard-info h3 {
+  margin: 0 0 3px;
+
+  font-size: 11px;
+}
+
+.dashboard-info p {
+  margin: 0;
+
+  font-size: 8px;
+
+  line-height: 1.5;
+
+  color: #766b85;
+}
+
+/* =========================================================
+   DASHBOARD LOGOUT
+========================================================= */
+
+.dashboard-logout {
+  display: block;
+
+  margin: 15px auto 0;
+
+  border: 1px solid #c9b9e8;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  color: #7049bd;
+
+  padding: 8px 20px;
+
+  border-radius: 18px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.dashboard-logout:hover {
+  background: white;
+}
+
+/* =========================================================
+   OTHER PAGES
+========================================================= */
+
+.page {
+  min-height: 100vh;
+
+  background: #f7f5ff;
+
+  padding: 35px 45px 50px;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+
+  color: #2b2340;
+
+  font-size: 30px;
+}
+
+.page-header p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   GENERAL CARD
+========================================================= */
+
+.card {
+  background: #fff;
+
+  border-radius: 17px;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid #eee9f8;
+
+  box-shadow:
+    0 7px 22px rgba(70, 50, 110, 0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+
+  color: #30283e;
+}
+
+.card h3 {
+  color: #30283e;
+}
+
+.card form {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.card form label {
+  margin: 13px 0 7px;
+
+  color: #3a3345;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.card form input,
+.card form select,
+.card form textarea {
+  width: 100%;
+
+  border: 1px solid #d9d4e2;
+
+  border-radius: 8px;
+
+  padding: 11px 12px;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+.card form input:focus,
+.card form select:focus,
+.card form textarea:focus {
+  border-color: #8057cf;
+
+  box-shadow:
+    0 0 0 3px rgba(128, 87, 207, 0.1);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn {
+  margin-top: 20px;
+
+  border: none;
+
+  background: #7d55c7;
+
+  color: #fff;
+
+  border-radius: 9px;
+
+  padding: 12px 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.primary-btn:hover {
+  background: #6942b5;
+}
+
+.delete-btn {
+  border: none;
+
+  background: #fff0f0;
+
+  color: #d83c3c;
+
+  border-radius: 8px;
+
+  padding: 8px 10px;
+
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #ffe0e0;
+}
+
+.empty-card {
+  background: #fff;
+
+  border-radius: 14px;
+
+  padding: 25px;
+
+  color: #777;
+
+  border: 1px solid #eee9f8;
+}
+
+/* =========================================================
+   LOAN CARDS
+========================================================= */
+
+.loan-card-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.loan-card-header h3 {
+  margin: 0 0 5px;
+}
+
+.loan-card-header p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 13px;
+}
+
+.loan-details {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 15px;
+}
+
+.loan-details>div {
+  background: #f8f6fc;
+
+  border-radius: 10px;
+
+  padding: 13px;
+}
+
+.loan-details span {
+  display: block;
+
+  color: #777;
+
+  font-size: 12px;
+
+  margin-bottom: 6px;
+}
+
+.loan-details strong {
+  display: block;
+
+  color: #30283e;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   REPORTS
+========================================================= */
+
+.report-card {
+  background: #fff;
+
+  border-radius: 17px;
+
+  padding: 25px;
+
+  border: 1px solid #eee9f8;
+
+  box-shadow:
+    0 7px 22px rgba(70, 50, 110, 0.07);
+}
+
+.report-card h2 {
+  margin-top: 0;
+
+  color: #30283e;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .loan-details {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 750px) {
+  .dashboard-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .dashboard-page {
+    padding: 25px 15px;
+  }
+
+  .dashboard-container {
+    max-width: 100%;
+  }
+
+  .finance-summary {
+    gap: 7px;
+  }
+
+  .summary-card {
+    min-height: 125px;
+
+    padding: 12px 5px;
+  }
+
+  .summary-card h3 {
+    font-size: 11px;
+  }
+
+  .summary-amount {
+    font-size: 17px;
+  }
+
+  .dashboard-options {
+    gap: 8px;
+  }
+
+  .dashboard-option {
+    min-height: 90px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .login-page {
+    padding: 20px;
+  }
+
+  .login-card {
+    padding: 28px 22px;
+  }
+
+  .login-card h1 {
+    font-size: 28px;
+  }
+
+  .page {
+    padding: 25px 18px 40px;
+  }
+
+  .loan-details {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-money-emoji {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .login-card h1 {
+    font-size: 25px;
+  }
+
+  .money-emoji {
+    font-size: 22px;
+  }
+
+  .dashboard-money-emoji {
+    font-size: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 22px;
+  }
+}
