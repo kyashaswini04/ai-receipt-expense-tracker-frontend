@@ -1,0 +1,918 @@
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eee8ff;
+  color: #30283e;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+
+/* ================================
+   LOGIN / REGISTER PAGE
+================================ */
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg,
+      #eee8ff,
+      #e8ddff,
+      #f3edff);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 30px 20px;
+}
+
+
+/* Login Card */
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-radius: 24px;
+
+  padding: 38px 38px 32px;
+
+  box-shadow:
+    0 20px 50px rgba(92, 63, 150, 0.16);
+
+  position: relative;
+  z-index: 10;
+}
+
+
+/* Top Money Icon */
+
+.login-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eee6ff;
+
+  border-radius: 50%;
+
+  font-size: 38px;
+}
+
+
+/* Login Heading */
+
+.login-card h1 {
+  text-align: center;
+
+  margin: 0;
+
+  font-size: 32px;
+
+  color: #30283e;
+}
+
+
+.login-subtitle {
+  text-align: center;
+
+  color: #777;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+  margin: 10px 0 28px;
+}
+
+
+/* Labels */
+
+.login-card label {
+  display: block;
+
+  margin: 15px 0 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #403650;
+}
+
+
+/* Inputs */
+
+.login-card input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border: 1px solid #ddd5ee;
+
+  border-radius: 12px;
+
+  background: #faf9fd;
+
+  color: #30283e;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+
+.login-card input:focus {
+  border-color: #8d6bd1;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 3px rgba(141, 107, 209, 0.12);
+}
+
+
+/* Login Button */
+
+.login-btn {
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg,
+      #7954c6,
+      #9270d9);
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.login-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(121, 84, 198, 0.25);
+}
+
+
+.login-btn:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* Register Text */
+
+.register-text {
+  text-align: center;
+
+  margin: 22px 0 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+.register-link {
+  border: none;
+
+  background: transparent;
+
+  color: #7049bd;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-left: 5px;
+
+  font-size: 14px;
+}
+
+
+/* ================================
+   FLOATING MONEY DECORATIONS
+================================ */
+
+.money-emoji,
+.dashboard-money-emoji {
+  position: absolute;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  opacity: 0.72;
+
+  animation: floatMoney 5s ease-in-out infinite;
+}
+
+
+.money-emoji {
+  font-size: 38px;
+}
+
+
+.dashboard-money-emoji {
+  font-size: 42px;
+}
+
+
+@keyframes floatMoney {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+
+/* Login Positions */
+
+.emoji-1 {
+  top: 8%;
+  left: 8%;
+}
+
+.emoji-2 {
+  top: 15%;
+  right: 10%;
+}
+
+.emoji-3 {
+  top: 45%;
+  left: 5%;
+}
+
+.emoji-4 {
+  bottom: 12%;
+  left: 12%;
+}
+
+.emoji-5 {
+  bottom: 8%;
+  right: 10%;
+}
+
+.emoji-6 {
+  top: 65%;
+  right: 6%;
+}
+
+.emoji-7 {
+  top: 28%;
+  left: 17%;
+}
+
+.emoji-8 {
+  bottom: 25%;
+  right: 17%;
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.dashboard-page {
+  min-height: 100vh;
+
+  width: 100%;
+
+  background: linear-gradient(135deg,
+      #eee8ff,
+      #e8ddff,
+      #f3edff);
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 45px 20px;
+}
+
+
+.dashboard-container {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+
+/* Dashboard Header */
+
+.dashboard-header {
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+
+.dashboard-header h1 {
+  margin: 0;
+
+  font-size: 38px;
+
+  color: #30283e;
+}
+
+
+.dashboard-header p {
+  margin: 10px auto 0;
+
+  max-width: 650px;
+
+  color: #71687d;
+
+  line-height: 1.6;
+}
+
+
+/* Dashboard Floating Positions */
+
+.dashboard-emoji-1 {
+  top: 7%;
+  left: 5%;
+}
+
+.dashboard-emoji-2 {
+  top: 14%;
+  right: 7%;
+}
+
+.dashboard-emoji-3 {
+  top: 42%;
+  left: 3%;
+}
+
+.dashboard-emoji-4 {
+  bottom: 10%;
+  left: 8%;
+}
+
+.dashboard-emoji-5 {
+  bottom: 7%;
+  right: 8%;
+}
+
+.dashboard-emoji-6 {
+  top: 60%;
+  right: 3%;
+}
+
+.dashboard-emoji-7 {
+  top: 27%;
+  left: 15%;
+}
+
+.dashboard-emoji-8 {
+  bottom: 25%;
+  right: 15%;
+}
+
+
+/* ================================
+   SUMMARY CARDS
+================================ */
+
+.finance-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+  margin-bottom: 35px;
+}
+
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.96);
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(92, 63, 150, 0.12);
+}
+
+
+.summary-icon {
+  font-size: 34px;
+
+  margin-bottom: 8px;
+}
+
+
+.summary-card h3 {
+  margin: 5px 0 12px;
+
+  color: #665b73;
+
+  font-size: 15px;
+}
+
+
+.summary-amount {
+  font-size: 25px;
+
+  font-weight: 800;
+
+  color: #30283e;
+}
+
+
+/* Add Amount */
+
+.add-amount-btn {
+  border: none;
+
+  background: #eee6ff;
+
+  color: #7049bd;
+
+  border-radius: 10px;
+
+  padding: 10px 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.add-amount-btn:hover {
+  background: #e2d6ff;
+}
+
+
+.small-edit-btn {
+  display: block;
+
+  margin: 10px auto 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #7049bd;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* ================================
+   QUICK ACTIONS
+================================ */
+
+.quick-actions-title {
+  margin: 0 0 18px;
+
+  font-size: 24px;
+
+  color: #30283e;
+}
+
+
+.dashboard-options {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+
+.dashboard-option {
+  border: none;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-radius: 18px;
+
+  padding: 23px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(92, 63, 150, 0.10);
+
+  transition: 0.2s;
+
+  min-height: 145px;
+}
+
+
+.dashboard-option:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 14px 30px rgba(92, 63, 150, 0.16);
+}
+
+
+.dashboard-option-icon {
+  display: block;
+
+  font-size: 34px;
+
+  margin-bottom: 12px;
+}
+
+
+.dashboard-option-title {
+  display: block;
+
+  color: #30283e;
+
+  font-weight: 800;
+
+  font-size: 16px;
+
+  margin-bottom: 6px;
+}
+
+
+.dashboard-option-description {
+  display: block;
+
+  color: #81778b;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+/* ================================
+   DASHBOARD INFO
+================================ */
+
+.dashboard-info {
+  margin-top: 28px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  display: flex;
+
+  gap: 15px;
+
+  align-items: flex-start;
+
+  box-shadow:
+    0 8px 25px rgba(92, 63, 150, 0.08);
+}
+
+
+.dashboard-info-icon {
+  font-size: 28px;
+}
+
+
+.dashboard-info h3 {
+  margin: 0 0 5px;
+
+  color: #30283e;
+}
+
+
+.dashboard-info p {
+  margin: 0;
+
+  color: #777;
+
+  line-height: 1.5;
+
+  font-size: 14px;
+}
+
+
+/* Logout */
+
+.dashboard-logout {
+  display: block;
+
+  margin: 25px auto 0;
+
+  border: none;
+
+  background: #30283e;
+
+  color: white;
+
+  padding: 12px 30px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+
+/* ================================
+   GENERAL PAGES
+================================ */
+
+.page {
+  min-height: 100vh;
+
+  background: #eee8ff;
+
+  padding: 35px 20px;
+}
+
+
+.page-header {
+  max-width: 900px;
+
+  margin: 0 auto 25px;
+}
+
+
+.page-header h1 {
+  margin: 0;
+
+  color: #30283e;
+
+  font-size: 32px;
+}
+
+
+.page-header p {
+  color: #777;
+}
+
+
+.card {
+  max-width: 900px;
+
+  margin: 0 auto 22px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 8px 25px rgba(92, 63, 150, 0.10);
+}
+
+
+.card h2 {
+  margin-top: 0;
+
+  color: #30283e;
+}
+
+
+/* Forms */
+
+.card label {
+  display: block;
+
+  margin: 14px 0 7px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #403650;
+}
+
+
+.card input,
+.card select,
+.card textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #ddd5ee;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #faf9fd;
+
+  font-size: 14px;
+}
+
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+  border-color: #8d6bd1;
+
+  background: white;
+}
+
+
+.primary-btn {
+  margin-top: 18px;
+
+  border: none;
+
+  background: #7954c6;
+
+  color: white;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+
+.primary-btn:hover {
+  background: #6844b5;
+}
+
+
+.primary-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+.delete-btn {
+  border: none;
+
+  background: #f3dfe4;
+
+  color: #a33c50;
+
+  padding: 8px 13px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+.empty-card {
+  text-align: center;
+
+  padding: 30px;
+
+  color: #888;
+
+  background: #f8f6fc;
+
+  border-radius: 12px;
+}
+
+
+.welcome-logout {
+  display: block;
+
+  margin: 20px auto;
+
+  border: none;
+
+  background: #30283e;
+
+  color: white;
+
+  padding: 12px 25px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 800px) {
+
+  .finance-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-options {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .dashboard-header h1 {
+    font-size: 32px;
+  }
+}
+
+
+@media (max-width: 550px) {
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .login-card h1 {
+    font-size: 27px;
+  }
+
+  .dashboard-page {
+    padding: 30px 15px;
+  }
+
+  .dashboard-options {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-money-emoji {
+    font-size: 30px;
+  }
+
+  .money-emoji {
+    font-size: 28px;
+  }
+}
