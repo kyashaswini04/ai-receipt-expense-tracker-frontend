@@ -1,170 +1,196 @@
 import { useState } from "react";
 import "./App.css";
-const API = (import.meta.env.VITE_API_URL || "https://ai-expense-tracker-api-kyashaswini.onrender.com").replace(/\/$/, "");
+
+const API =
+  "https://ai-receipt-expense-tracker-backend-2.onrender.com";
+
 function Register() {
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
     });
+    setErrorMessage("");
+  };
 
-    const [loading, setLoading] = useState(false);
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+    if (loading) return;
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
+    if (form.password !== form.confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
 
-        if (form.password !== form.confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
+    if (form.password.length < 8) {
+      setErrorMessage("Password must contain at least 8 characters.");
+      return;
+    }
 
-        setLoading(true);
+    setLoading(true);
+    setErrorMessage("");
 
-        try {
-            const response = await fetch(`${API}/auth/register`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: form.name,
-                    email: form.email,
-                    password: form.password,
-                }),
-            });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-            const data = await response.json();
+    try {
+      const response = await fetch(`${API}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        signal: controller.signal,
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          password: form.password,
+        }),
+      });
 
-            if (!response.ok) {
-                alert(data.message || "Registration failed.");
-                return;
-            }
+      const data = await response.json().catch(() => ({}));
 
-            alert("Account created successfully!");
+      if (!response.ok) {
+        setErrorMessage(
+          data.message ||
+            data.error ||
+            (response.status === 409
+              ? "This email may already be registered. Try logging in."
+              : `Registration failed (${response.status}).`)
+        );
+        return;
+      }
 
-            window.location.href = "/login";
+      alert("Account created successfully!");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Registration error:", error);
 
-        } catch (error) {
-            console.error("Registration error:", error);
-            alert("Could not connect to the server.");
-        } finally {
-            setLoading(false);
-        }
-    };
+      if (error.name === "AbortError") {
+        setErrorMessage(
+          "The server took too long to respond. Check whether your account was created before trying again."
+        );
+      } else {
+        setErrorMessage(
+          "Could not connect to the server. Please check your internet and try again."
+        );
+      }
+    } finally {
+      clearTimeout(timeoutId);
+      setLoading(false);
+    }
+  };
 
-    return (
-        <div className="login-page">
+  return (
+    <div className="login-page">
+      <div className="money-emoji emoji-1">💵</div>
+      <div className="money-emoji emoji-2">💰</div>
+      <div className="money-emoji emoji-3">💸</div>
+      <div className="money-emoji emoji-4">💵</div>
+      <div className="money-emoji emoji-5">🤑</div>
+      <div className="money-emoji emoji-6">💰</div>
+      <div className="money-emoji emoji-7">💸</div>
+      <div className="money-emoji emoji-8">💵</div>
 
-            <div className="money-emoji emoji-1">💵</div>
-            <div className="money-emoji emoji-2">💰</div>
-            <div className="money-emoji emoji-3">💸</div>
-            <div className="money-emoji emoji-4">💵</div>
-            <div className="money-emoji emoji-5">🤑</div>
-            <div className="money-emoji emoji-6">💰</div>
-            <div className="money-emoji emoji-7">💸</div>
-            <div className="money-emoji emoji-8">💵</div>
+      <div className="login-card">
+        <div className="login-icon">💰</div>
 
-            <div className="login-card">
+        <h1>Create Account</h1>
+        <p className="login-subtitle">
+          Start managing your personal expenses
+        </p>
 
-                <div className="login-icon">
-                    💰
-                </div>
+        <form onSubmit={handleRegister}>
+          <label htmlFor="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter your name"
+            autoComplete="name"
+            required
+          />
 
-                <h1>Create Account</h1>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            autoComplete="email"
+            required
+          />
 
-                <p className="login-subtitle">
-                    Start managing your personal expenses
-                </p>
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Create a password"
+            autoComplete="new-password"
+            minLength={8}
+            required
+          />
 
-                <form onSubmit={handleRegister}>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm your password"
+            autoComplete="new-password"
+            minLength={8}
+            required
+          />
 
-                    <label>Full Name</label>
+          {errorMessage && (
+            <p role="alert" className="error-message">
+              {errorMessage}
+            </p>
+          )}
 
-                    <input
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Enter your name"
-                        required
-                    />
+          <button
+            type="submit"
+            className="login-btn"
+            disabled={loading}
+          >
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
 
-
-                    <label>Email</label>
-
-                    <input
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="Enter your email"
-                        required
-                    />
-
-
-                    <label>Password</label>
-
-                    <input
-                        type="password"
-                        name="password"
-                        value={form.password}
-                        onChange={handleChange}
-                        placeholder="Create a password"
-                        required
-                    />
-
-
-                    <label>Confirm Password</label>
-
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={form.confirmPassword}
-                        onChange={handleChange}
-                        placeholder="Confirm your password"
-                        required
-                    />
-
-
-                    <button
-                        type="submit"
-                        className="login-btn"
-                        disabled={loading}
-                    >
-                        {loading ? "Creating Account..." : "Create Account"}
-                    </button>
-
-                </form>
-
-
-                <p className="register-text">
-
-                    Already have an account?
-
-                    <button
-                        type="button"
-                        className="register-link"
-                        onClick={() => {
-                            window.location.href = "/login";
-                        }}
-                    >
-                        Login
-                    </button>
-
-                </p>
-
-            </div>
-
-        </div>
-    );
+        <p className="register-text">
+          Already have an account?{" "}
+          <button
+            type="button"
+            className="register-link"
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+          >
+            Login
+          </button>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
