@@ -42,8 +42,7 @@ function Register() {
     setErrorMessage("");
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000);
-
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
     try {
       const response = await fetch(`${API}/auth/register`, {
         method: "POST",
